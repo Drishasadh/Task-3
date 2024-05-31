@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <title>vizGoogleFit</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="nouislider.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    </head>
+    <style>
+        .body{
+            font-family: 'Poppins';
+            background-color: #080808
+        }
+        .slider{
+            background: gray;
+            box-shadow: none;
+            border:0px;
+        }
+        .noUi-connect {
+            background: purple;
+        }
+        .noUi-draggable {
+            cursor: move;
+        }
+
+        .noUi-handle {
+            cursor: w-resize;
+        }
+
+        .noUi-horizontal .noUi-handle{
+            width: 7px;
+            height: 15px;
+        }
+
+        .noUi-horizontal{
+            height: 8px;
+        }
+
+        html:not([dir=rtl]) .noUi-horizontal .noUi-handle{
+            right: -7px;
+        }
+
+        .noUi-handle:before {
+            background: transparent;
+            content:none;
+        }
+
+        .noUi-handle:after {
+            background: transparent;
+            content:none;
+        }
+
+        .noUi-tooltip {
+            background: transparent;
+            border:none;
+            color:white;
+        }
+
+        .noUi-horizontal .noUi-tooltip {
+            transform:translate(-50%,150%);
+        }
+
+        :focus {
+            outline-color: transparent;
+        }
+
+        .toast {
+            background-color:black;
+        }
+
+        #toast-container {
+            top: auto !important;
+            right: 1% !important;
+            bottom: 10%;
+            left:82%;
+        }
+    </style>
+    <body class="body">
+    <main>
+        <div class="row">
+            <nav style="background-color:#1f1f1f" role="navigation">
+                <ul style="display: flex;">
+                    <li><img class="auth-image circle responsive-img col s6"/></li>
+                    <li><h6 class="auth-info col s7" style="color:white;font-weight:600;"></h6></li>
+                    <li><a id="authorize-button" class="col s3" style="display:none;padding:12px;">
+                            <img class="responsive-img" src="signin.png"/>
+                    </a></li>
+                    <li><a id="signout-button" class="col s3" style="display:none;padding:12px;">
+                            <img class="responsive-img" src="signout.png"/>
+                    </a></li>
+
+                    <li><img class="responsive-img col s3 right" src="logo.png"/></li>
+                </ul>
+            </nav>
+            <div id="right" class="col s2 card center-align" style="display:none;background-color:#1f1f1f;border:0px;margin-top:30px;margin-left:30px;border-radius:10px;">
+                <br>
+                <img class="responsive-img" src="runner.gif" style="padding:0px;">
+                <h5 style="color:white;font-weight:600;">Daily Steps</h5>
+                <h6 class="header" style="color:white;"></h6>
+                <br>
+                <p style="color:gray">min</p>
+                <h6 style="color:white" class="min"></h6>
+                <p style="color:gray">max</p>
+                <h6 style="color:white" class="max"></h6>
+                <p style="color:gray">avg</p>
+                <h6 style="color:white" class="avg"></h6>
+                <br>
+                <br>
+                <br>
+            </div>            
+            <div class="col s7 card center-align" id="plot-card" style="background-color:transparent;border:0px;margin:30px;border-radius: 10px;">
+                <div id="vizGoogleFit" class="vizGoogleFit"></div>
+                <div class="slider" id="slider" style="display:none;"></div>
+            </div>
+
+
+        </div>
+        </main>
+        <footer style="position:fixed;left: 0;bottom: 0;width: 100%;">
+            <div class="footer-copyright"style="padding-left:30px;padding-right:30px" >
+                <a class="github-button" href="https://github.com/defnetuncer98/vizGoogleFit" data-icon="octicon-star" data-size="large" data-show-count="true">Star</a>
+                <a class="github-button" href="https://github.com/defnetuncer98" data-size="large">defnetuncer98</a>
+                <a  class="chip hoverable waves-effect right" style="color:black" onclick="M.toast({ html: 'Your date is safe! All processing and visualization of your data is done offline on your computer and only accessible by you.'})">
+                ?</a>                
+                <a id="steps-button" class="steps-button chip hoverable waves-effect right" style="display:none;">STEPS</a>
+                <a id="calories-button" class="calories-button chip hoverable waves-effect right" style="display:none;">CALORIES</a>
+                <!-- <a id="random-color" class="right responsive-img">
+                    <i class="material-icons" style="color:white">wb_sunny</i>
+                </a> -->
+
+            </div>
+        </footer>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>     
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="nouislider.min.js"></script>
+        <script src="app.js"></script>
+        <script src="https://apis.google.com/js/api.js?onload=handleClientLoad"></script>    
+    </body>
+</html>
